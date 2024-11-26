@@ -15,7 +15,6 @@
     the `--base-href` argument provided to `flutter build`.
   -->
   <base href="/">
-  <link rel="manifest" href="manifest.json">
   <meta charset="UTF-8">
   <meta content="IE=Edge" http-equiv="X-UA-Compatible">
   <meta name="description" content="A new Flutter project.">
@@ -28,11 +27,29 @@
 
   <!-- Favicon -->
   <link rel="icon" type="image/png" href="favicon.png"/>
-
+<script>
+  window.onload = () => {
+    fetch('manifest.json')
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Manifest file not found');
+        }
+        return response.json();
+      })
+      .then(manifest => {
+        console.log('Manifest Loaded:', manifest);
+        // Xử lý dữ liệu của manifest ở đây
+      })
+      .catch(error => {
+        console.error('Error loading manifest:', error);
+      });
+  };
+</script>
   <title>flutter_application_1</title>
   
 </head>
 <body>
   <script src="flutter_bootstrap.js" async></script>
+  
 </body>
 </html>
